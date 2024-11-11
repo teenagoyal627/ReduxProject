@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import Counter from './Component/Counter'
+import Header from './Component/Header'
+import Auth from './Component/Auth'
+import { useSelector } from 'react-redux'
+import UserProfile from './Component/UserProfile'
 
-function App() {
+const App = () => {
+
+ const isAuth= useSelector(state=>state.auth.isInitialAuth)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+    <Header/>
+   { !isAuth && <Auth/>}
+   {  isAuth && <UserProfile/>}
+    <Counter/>
+    
+      
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
